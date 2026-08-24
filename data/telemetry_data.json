@@ -1,0 +1,461 @@
+[
+  {
+    "id": "tongass_national_forest",
+    "name": "Tongass National Forest",
+    "region": "Alaska, United States",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "USA",
+    "lat": 56.5,
+    "lng": -132.5,
+    "biome": "Coastal Temperate Rainforest & Glacial Fjords",
+    "dominant_species": [
+      "Bald Eagle",
+      "Common Raven",
+      "Sitka Black-tailed Deer",
+      "Spawning Salmon",
+      "Harbor Seal"
+    ],
+    "geophonic_elements": [
+      "Pacific Fjord Wave Surge",
+      "Glacial Melt Runoff",
+      "Temperate Heavy Canopy Drip",
+      "Cold Maritime Westerlies"
+    ],
+    "telemetry": {
+      "elevation_meters": 320.0,
+      "terrain_slope_degrees": 24.5,
+      "tree_canopy_percent": 88.0,
+      "water_occurrence_percent": 42.0,
+      "ambient_temp_celsius": 17.7,
+      "precipitation_rate_mm_h": 3.8,
+      "wind_speed_ms": 6.2,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "grand_canyon",
+    "name": "Grand Canyon National Park",
+    "region": "Arizona, United States",
+    "category": "Natural Wonders & Landmarks",
+    "country_code": "USA",
+    "lat": 36.1069,
+    "lng": -112.1129,
+    "biome": "Arid Deep Canyon & Desert Shrubland",
+    "dominant_species": [
+      "Red-tailed Hawk",
+      "Canyon Wren",
+      "Desert Cicadas",
+      "Bighorn Sheep"
+    ],
+    "geophonic_elements": [
+      "1800m Deep Gorge Echo Reverb",
+      "Thermal Canyon Winds",
+      "Colorado River Rapids",
+      "Limestone Crevice Whispers"
+    ],
+    "telemetry": {
+      "elevation_meters": 1011.1,
+      "terrain_slope_degrees": 38.2,
+      "tree_canopy_percent": 4.5,
+      "water_occurrence_percent": 1.2,
+      "ambient_temp_celsius": 34.8,
+      "precipitation_rate_mm_h": 0.05,
+      "wind_speed_ms": 4.8,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "amazon_rainforest",
+    "name": "Central Amazon Rainforest",
+    "region": "Amazonas, Brazil",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "BRA",
+    "lat": -3.4653,
+    "lng": -62.2159,
+    "biome": "Tropical Moist Broadleaf Rainforest & V\u00e1rzea Floodplain",
+    "dominant_species": [
+      "Red Howler Monkey",
+      "Toco Toucan",
+      "Poison Dart Frog",
+      "Amazon Pink River Dolphin",
+      "Nocturnal Katydids"
+    ],
+    "geophonic_elements": [
+      "Tropical Deluge Downpour",
+      "Canopy Thunder Echo",
+      "Deep River Currents",
+      "Warm Humid Resonance"
+    ],
+    "telemetry": {
+      "elevation_meters": 48.4,
+      "terrain_slope_degrees": 2.1,
+      "tree_canopy_percent": 96.5,
+      "water_occurrence_percent": 68.0,
+      "ambient_temp_celsius": 31.3,
+      "precipitation_rate_mm_h": 7.5,
+      "wind_speed_ms": 2.2,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "borneo_rainforest",
+    "name": "Borneo & Kalimantan Rainforest",
+    "region": "Central Kalimantan, Indonesia",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "IDN",
+    "lat": 0.9619,
+    "lng": 114.5548,
+    "biome": "Lowland Dipterocarp & Peat Swamp Forest",
+    "dominant_species": [
+      "Bornean Gibbon",
+      "Rhinoceros Hornbill",
+      "Tree Frogs",
+      "Cicadas",
+      "Flying Frog"
+    ],
+    "geophonic_elements": [
+      "Towering Dipterocarp Canopy Drip",
+      "Equatorial Monsoon Rain",
+      "Peat River Sluggish Swell",
+      "Humid Afternoon Storms"
+    ],
+    "telemetry": {
+      "elevation_meters": 403.6,
+      "terrain_slope_degrees": 8.4,
+      "tree_canopy_percent": 91.0,
+      "water_occurrence_percent": 28.5,
+      "ambient_temp_celsius": 21.5,
+      "precipitation_rate_mm_h": 6.8,
+      "wind_speed_ms": 2.4,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "sundarbans",
+    "name": "Sundarbans Mangrove Delta",
+    "region": "West Bengal, India / Bangladesh",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "IND",
+    "lat": 21.9497,
+    "lng": 89.1833,
+    "biome": "Tidal Mangrove & Brackish Estuary",
+    "dominant_species": [
+      "White-throated Kingfisher",
+      "Mudskippers",
+      "Fiddler Crabs",
+      "Bengal Tiger",
+      "Spotted Deer"
+    ],
+    "geophonic_elements": [
+      "Twice-Daily Tidal Inundation",
+      "Swirling Brackish Currents",
+      "Mudflat Coastal Wind",
+      "Monsoon Estuary Surge"
+    ],
+    "telemetry": {
+      "elevation_meters": 4.0,
+      "terrain_slope_degrees": 0.8,
+      "tree_canopy_percent": 74.0,
+      "water_occurrence_percent": 84.0,
+      "ambient_temp_celsius": 28.6,
+      "precipitation_rate_mm_h": 8.2,
+      "wind_speed_ms": 5.4,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "western_ghats",
+    "name": "Western Ghats Mountain Range",
+    "region": "Kerala / Tamil Nadu, India",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "IND",
+    "lat": 10.1518,
+    "lng": 77.062,
+    "biome": "Montane Evergreen Rainforest & Shola Cloud Forest",
+    "dominant_species": [
+      "Malabar Whistling Thrush",
+      "Lion-tailed Macaque",
+      "Endemic Bush Frogs",
+      "Asian Elephant"
+    ],
+    "geophonic_elements": [
+      "Southwest Monsoon Torrential Deluge",
+      "Dense Cloud Mist Condensation",
+      "Cascading Mountain Waterfalls",
+      "Ridge Wind Funnels"
+    ],
+    "telemetry": {
+      "elevation_meters": 1887.1,
+      "terrain_slope_degrees": 28.6,
+      "tree_canopy_percent": 86.0,
+      "water_occurrence_percent": 14.0,
+      "ambient_temp_celsius": 16.4,
+      "precipitation_rate_mm_h": 12.4,
+      "wind_speed_ms": 7.1,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "daintree_rainforest",
+    "name": "Daintree Rainforest & Coast",
+    "region": "Queensland, Australia",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "AUS",
+    "lat": -16.17,
+    "lng": 145.4185,
+    "biome": "Ancient Tropical Rainforest meeting Coral Sea",
+    "dominant_species": [
+      "Southern Cassowary",
+      "White-lipped Tree Frog",
+      "Wompoo Fruit Dove",
+      "Saltwater Crocodile"
+    ],
+    "geophonic_elements": [
+      "Rainforest-to-Reef Coastal Waves",
+      "Fan Palm Frond Clatter",
+      "Fast Rocky Creek Rapids",
+      "Wet Tropics Downpour"
+    ],
+    "telemetry": {
+      "elevation_meters": 21.4,
+      "terrain_slope_degrees": 16.2,
+      "tree_canopy_percent": 94.0,
+      "water_occurrence_percent": 35.0,
+      "ambient_temp_celsius": 18.0,
+      "precipitation_rate_mm_h": 5.9,
+      "wind_speed_ms": 4.6,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "great_barrier_reef",
+    "name": "Great Barrier Reef (Outer Swell)",
+    "region": "Coral Sea, Australia",
+    "category": "Natural Wonders & Landmarks",
+    "country_code": "AUS",
+    "lat": -18.2871,
+    "lng": 147.6992,
+    "biome": "Marine Coral Reef & Hydroacoustic Seascape",
+    "dominant_species": [
+      "Snapping Shrimp Chorus",
+      "Parrotfish Coral Scraping",
+      "Damselfish Clicks",
+      "Humpback Whale Song"
+    ],
+    "geophonic_elements": [
+      "Reef Crest Wave Breaks",
+      "Sub-surface Hydrostatic Bubble Resonance",
+      "Tidal Surge through Coral Channels",
+      "Open Ocean Swell"
+    ],
+    "telemetry": {
+      "elevation_meters": 0.0,
+      "terrain_slope_degrees": 1.2,
+      "tree_canopy_percent": 0.0,
+      "water_occurrence_percent": 100.0,
+      "ambient_temp_celsius": 22.6,
+      "precipitation_rate_mm_h": 1.2,
+      "wind_speed_ms": 8.5,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "greater_khingan",
+    "name": "Greater Khingan Taiga Forest",
+    "region": "Inner Mongolia, China",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "CHN",
+    "lat": 51.5,
+    "lng": 122.5,
+    "biome": "Boreal Taiga & Permafrost Larch Forest",
+    "dominant_species": [
+      "Siberian Musk Deer",
+      "Hazel Grouse",
+      "Eurasian Eagle-Owl",
+      "Black Woodpecker"
+    ],
+    "geophonic_elements": [
+      "Subzero Siberian Wind Whistle",
+      "Frozen River Ice Popping & Cracking",
+      "Brittle Snow Crust Crunch",
+      "Sparse Needleleaf Whispers"
+    ],
+    "telemetry": {
+      "elevation_meters": 930.1,
+      "terrain_slope_degrees": 12.0,
+      "tree_canopy_percent": 68.0,
+      "water_occurrence_percent": 8.5,
+      "ambient_temp_celsius": -12.4,
+      "precipitation_rate_mm_h": 0.8,
+      "wind_speed_ms": 5.9,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "valdivian_rainforest",
+    "name": "Valdivian Temperate Rainforest",
+    "region": "Los R\u00edos, Chile",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "CHL",
+    "lat": -39.8142,
+    "lng": -73.2459,
+    "biome": "Valdivian Temperate Rainforest & Volcanic Andes",
+    "dominant_species": [
+      "Chucao Tapaculo",
+      "Darwin's Bell Frog",
+      "Magellanic Woodpecker",
+      "Austral Parakeet"
+    ],
+    "geophonic_elements": [
+      "Pacific Westerly Rainstorms",
+      "Ancient Alerce Canopy Drip",
+      "Glacial Andean Torrent Roar",
+      "Mossy Understory Acoustic Absorption"
+    ],
+    "telemetry": {
+      "elevation_meters": 17.0,
+      "terrain_slope_degrees": 22.4,
+      "tree_canopy_percent": 89.0,
+      "water_occurrence_percent": 22.0,
+      "ambient_temp_celsius": 8.9,
+      "precipitation_rate_mm_h": 4.5,
+      "wind_speed_ms": 6.8,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "great_bear_rainforest",
+    "name": "Great Bear Rainforest",
+    "region": "British Columbia, Canada",
+    "category": "Rainforests & Natural Wonders",
+    "country_code": "CAN",
+    "lat": 52.8542,
+    "lng": -128.8686,
+    "biome": "Intact Coastal Temperate Rainforest & Fjords",
+    "dominant_species": [
+      "Coastal Sea Wolf",
+      "Spirit / Grizzly Bear",
+      "Common Raven Bell-Calls",
+      "Bald Eagle"
+    ],
+    "geophonic_elements": [
+      "Pacific Fjord Swell Echo",
+      "Old-Growth Cedar Wind Resonance",
+      "Fast Salmon River Waterfalls",
+      "Heavy Marine Fog Drip"
+    ],
+    "telemetry": {
+      "elevation_meters": 665.3,
+      "terrain_slope_degrees": 26.8,
+      "tree_canopy_percent": 92.0,
+      "water_occurrence_percent": 48.0,
+      "ambient_temp_celsius": 22.5,
+      "precipitation_rate_mm_h": 4.9,
+      "wind_speed_ms": 6.5,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  },
+  {
+    "id": "mount_everest",
+    "name": "Mount Everest & Khumbu Icefall",
+    "region": "Solukhumbu, Nepal / Tibet",
+    "category": "Natural Wonders & Landmarks",
+    "country_code": "NPL",
+    "lat": 27.9881,
+    "lng": 86.925,
+    "biome": "High Alpine, Glacial Icefall & Sub-Zero Summit",
+    "dominant_species": [
+      "Alpine Chough",
+      "Himalayan Monal Pheasant",
+      "Tibetan Snowcock"
+    ],
+    "geophonic_elements": [
+      "Jet Stream Ridge Roar (>8000m)",
+      "Khumbu Glacial Ice Cracking Sub-bass",
+      "Blizzard Wind Howl",
+      "Thin Air Acoustic Damping"
+    ],
+    "telemetry": {
+      "elevation_meters": 8729.4,
+      "terrain_slope_degrees": 44.5,
+      "tree_canopy_percent": 0.0,
+      "water_occurrence_percent": 0.0,
+      "ambient_temp_celsius": 6.8,
+      "precipitation_rate_mm_h": 1.5,
+      "wind_speed_ms": 18.2,
+      "data_sources": {
+        "elevation": "Copernicus DEM GLO-30 (30m) & Google Maps Elevation API",
+        "canopy": "UMD Hansen Global Forest Change v1.11 (30m)",
+        "water": "EC JRC Global Surface Water Occurrence (30m)",
+        "weather": "ECMWF ERA5-Land Climate Reanalysis (11km) & Google Weather API",
+        "biodiversity": "Data Commons Planetary Indicators & IUCN Red List Spatial Layer"
+      }
+    }
+  }
+]

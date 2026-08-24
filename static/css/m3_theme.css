@@ -1,0 +1,157 @@
+/* Material Design 3 Light Theme Tokens & Custom Styling */
+:root {
+  /* M3 Light Palette */
+  --md-sys-color-primary: #1B4D3E;          /* Deep Forest Emerald */
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #D1E8E2;
+  --md-sys-color-on-primary-container: #052B20;
+
+  --md-sys-color-secondary: #0C4A6E;        /* Deep Ocean Azure */
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #BAE6FD;
+  --md-sys-color-on-secondary-container: #082F49;
+
+  --md-sys-color-tertiary: #B45309;         /* Warm Earth Ochre */
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #FEF3C7;
+  --md-sys-color-on-tertiary-container: #451A03;
+
+  --md-sys-color-surface: #FAF9F6;          /* Off-white warm surface */
+  --md-sys-color-surface-dim: #F2EFE9;
+  --md-sys-color-surface-bright: #FFFFFF;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #F6F3ED;
+  --md-sys-color-surface-container: #EFECE5;
+  --md-sys-color-surface-container-high: #E8E5DD;
+  --md-sys-color-surface-container-highest: #E2DFD7;
+
+  --md-sys-color-on-surface: #1C1B1F;
+  --md-sys-color-on-surface-variant: #49454F;
+  --md-sys-color-outline: #79747E;
+  --md-sys-color-outline-variant: #CAC4D0;
+
+  /* M3 Elevation Shadows */
+  --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+  --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.14);
+  --md-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.08), 0px 1px 3px 0px rgba(0, 0, 0, 0.14);
+  --md-elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.08), 0px 2px 3px 0px rgba(0, 0, 0, 0.14);
+
+  /* Shape Tokens */
+  --md-shape-corner-xs: 4px;
+  --md-shape-corner-s: 8px;
+  --md-shape-corner-m: 12px;
+  --md-shape-corner-l: 16px;
+  --md-shape-corner-xl: 28px;
+  --md-shape-corner-full: 9999px;
+}
+
+body {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: 'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--md-sys-color-surface-container-low);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-outline);
+}
+
+/* Glassmorphic Accents */
+.glass-header {
+  background: rgba(250, 249, 246, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* M3 Card Surfaces */
+.m3-card {
+  background: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-shape-corner-xl);
+  box-shadow: var(--md-elevation-1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.m3-card:hover {
+  box-shadow: var(--md-elevation-2);
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+.m3-card-elevated {
+  background: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-xl);
+  box-shadow: var(--md-elevation-2);
+}
+
+/* Material Slider Styles */
+input[type="range"].m3-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: var(--md-sys-color-surface-container-highest);
+  border-radius: var(--md-shape-corner-full);
+  outline: none;
+  transition: background 0.2s ease;
+}
+input[type="range"].m3-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--md-sys-color-primary);
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+input[type="range"].m3-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #143D31;
+}
+input[type="range"].m3-slider::-webkit-slider-thumb:active {
+  transform: scale(1.3);
+}
+
+/* Pulsing Live Beacon */
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.8)); }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+.live-pulse {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Waveform Canvas Container */
+.waveform-container {
+  background: linear-gradient(180deg, #F9F7F3 0%, #EFECE6 100%);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-shape-corner-l);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Custom Accordion Chevron */
+.accordion-chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion-active .accordion-chevron {
+  transform: rotate(180deg);
+}

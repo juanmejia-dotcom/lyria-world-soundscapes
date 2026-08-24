@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EarthAI Soundscapes</title>
+  
+  <!-- Google Fonts: Roboto & Google Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom M3 Theme Stylesheet -->
+  <link rel="stylesheet" href="css/m3_theme.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Google Sans"', 'Roboto', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'monospace'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#1B4D3E',
+              container: '#D1E8E2',
+              onContainer: '#052B20'
+            },
+            secondary: {
+              DEFAULT: '#0C4A6E',
+              container: '#BAE6FD',
+              onContainer: '#082F49'
+            },
+            tertiary: {
+              DEFAULT: '#B45309',
+              container: '#FEF3C7',
+              onContainer: '#451A03'
+            },
+            surface: {
+              DEFAULT: '#FAF9F6',
+              low: '#F6F3ED',
+              container: '#EFECE5',
+              high: '#E8E5DD',
+              highest: '#E2DFD7'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FAF9F6] text-[#1C1B1F] antialiased selection:bg-emerald-100 selection:text-emerald-900 min-h-screen flex flex-col">
+
+  <!-- Top App Bar (M3 Light Header) -->
+  <header class="sticky top-0 z-50 glass-header shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-emerald-700 flex items-center justify-center text-white shadow-md shadow-emerald-900/20">
+          <i data-lucide="waves" class="w-5 h-5 text-emerald-100"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-slate-900 flex items-center gap-2">
+            <span>EarthAI Soundscapes</span>
+          </h1>
+          <p class="text-[11px] text-slate-500 font-medium -mt-0.5">Planetary Soundscapes & Bioacoustic Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Location Selector Dropdown -->
+      <div class="flex items-center gap-3">
+        <div class="relative w-64 sm:w-80">
+          <label for="location-select" class="sr-only">Choose Location</label>
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i>
+          </div>
+          <select id="location-select" class="block w-full pl-9 pr-10 py-2 text-sm font-medium bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-slate-800 cursor-pointer">
+            <!-- Populated via JS -->
+          </select>
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <button id="prev-location-btn" title="Previous Location" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition shadow-sm">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        </button>
+        <button id="next-location-btn" title="Next Location" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition shadow-sm">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 space-y-6">
+
+    <!-- Location Overview Header Card (Full-Width Aesthetic Layout) -->
+    <section class="m3-card p-6 sm:p-8 bg-white space-y-6">
+      <div class="space-y-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="loc-region-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-900 border border-emerald-200">
+            Region
+          </span>
+          <span id="loc-biome-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-900 border border-blue-200">
+            Biome
+          </span>
+          <span id="loc-coords-badge" class="px-3 py-1 rounded-full text-xs font-mono bg-slate-100 text-slate-700 border border-slate-200">
+            0.0000°, 0.0000°
+          </span>
+        </div>
+        <h2 id="loc-title" class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+          Location Name
+        </h2>
+        <p id="loc-biome-desc" class="text-sm text-slate-600 leading-relaxed max-w-5xl">
+          Biome and ecological description...
+        </p>
+      </div>
+
+      <!-- Aesthetic Full-Width Bioacoustic & Ecological Profile Card -->
+      <div class="w-full rounded-2xl bg-gradient-to-br from-emerald-50/70 via-slate-50/80 to-blue-50/50 border border-emerald-200/80 p-5 sm:p-6 space-y-5 shadow-sm">
+        <!-- Section 1: What Does This Location Sound Like -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200 shadow-xs">
+              <i data-lucide="volume-2" class="w-4 h-4"></i>
+            </span>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-950">
+              What does this location sound like?
+            </h4>
+          </div>
+          <div class="p-4 sm:p-5 rounded-xl bg-white/95 border border-emerald-100/90 shadow-sm">
+            <p id="loc-soundscape-desc" class="text-sm sm:text-base text-slate-900 leading-relaxed font-medium"></p>
+          </div>
+        </div>
+
+        <!-- Elegant Divider with subtle badge node -->
+        <div class="relative py-1 flex items-center justify-center">
+          <div class="w-full border-t border-emerald-200/60"></div>
+          <div class="absolute bg-emerald-50 px-3 py-0.5 rounded-full border border-emerald-200/80 text-[10px] font-mono text-emerald-800 font-semibold flex items-center gap-1">
+            <i data-lucide="sparkles" class="w-3 h-3 text-emerald-600"></i>
+            <span>Ecological Acoustic Attribution</span>
+          </div>
+        </div>
+
+        <!-- Section 2: Why Does It Sound Like This -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 rounded-xl bg-blue-100 text-blue-800 border border-blue-200 shadow-xs">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+            </span>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-950">
+              Why does it sound like this? (Data & Ecological Drivers)
+            </h4>
+          </div>
+          <div class="p-4 sm:p-5 rounded-xl bg-white/95 border border-blue-100/90 shadow-sm">
+            <p id="loc-soundscape-why" class="text-xs sm:text-sm text-slate-800 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Soundscape Player & Live Dynamic Waveform Studio -->
+    <section class="m3-card p-6 bg-white space-y-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="radio" class="w-5 h-5 text-emerald-600"></i>
+          <h3 class="text-base font-bold text-slate-900">Authentic Field Recording Soundscape</h3>
+        </div>
+        <span id="audio-status-tag" class="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+          Ready
+        </span>
+      </div>
+
+      <!-- Canvas Audio Waveform Visualizer -->
+      <div class="waveform-container h-36 w-full flex items-center justify-center">
+        <canvas id="waveform-canvas" class="w-full h-full block"></canvas>
+        <div id="waveform-placeholder" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-slate-400">
+          <i data-lucide="music" class="w-8 h-8 mb-1 text-slate-300"></i>
+          <span class="text-xs font-medium">Click Play to Activate Real-Time Waveform Visualizer</span>
+        </div>
+      </div>
+
+      <!-- Playback Controls -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+        <div class="flex items-center gap-4">
+          <!-- Play / Pause Button -->
+          <button id="play-btn" class="w-14 h-14 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white flex items-center justify-center shadow-lg shadow-emerald-900/20 transition transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-200">
+            <i id="play-icon" data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+          </button>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="current-time" class="text-sm font-mono font-semibold text-slate-900">0:00</span>
+              <span class="text-slate-300 font-mono">/</span>
+              <span id="total-duration" class="text-sm font-mono text-slate-500">1:00</span>
+            </div>
+            <p id="audio-mode-label" class="text-xs text-emerald-700 font-medium mt-0.5">Authentic Master Soundscape</p>
+          </div>
+        </div>
+
+        <!-- Scrubber Progress Bar -->
+        <div class="flex-1 max-w-md mx-2">
+          <input type="range" id="seek-bar" min="0" max="100" value="0" step="0.1" class="m3-slider cursor-pointer">
+        </div>
+
+        <!-- Volume & Loop Controls -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <button id="mute-btn" class="p-2 text-slate-500 hover:text-slate-800 transition">
+              <i id="volume-icon" data-lucide="volume-2" class="w-5 h-5"></i>
+            </button>
+            <input type="range" id="volume-bar" min="0" max="1" step="0.05" value="0.85" class="w-20 h-1.5 bg-slate-200 rounded-lg cursor-pointer">
+          </div>
+
+          <button id="loop-btn" title="Toggle Loop" class="p-2.5 rounded-xl border border-slate-200 text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition">
+            <i data-lucide="repeat" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- How This Audio Was Generated (Audio Provenance & Processing) -->
+      <div class="pt-5 border-t border-slate-100 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200">
+              <i data-lucide="layers" class="w-4 h-4 text-emerald-700"></i>
+            </span>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-800">
+              How This Audio Was Generated
+            </h4>
+          </div>
+          <span class="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+            Multi-Track Field Master
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="mic" class="w-3 h-3 text-emerald-600"></i>
+              Field Recordings Downloaded
+            </span>
+            <p id="audio-recordings-used" class="text-xs font-medium text-slate-900 leading-relaxed"></p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="database" class="w-3 h-3 text-blue-600"></i>
+              Source & Attribution
+            </span>
+            <p id="audio-source-attribution" class="text-xs font-medium text-slate-900 leading-relaxed"></p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="sliders" class="w-3 h-3 text-purple-600"></i>
+              DSP & Audio Processing Done
+            </span>
+            <p id="audio-dsp-processing" class="text-xs font-medium text-slate-900 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Box 2: Google DeepMind Lyria 2 Neural Bioacoustic Soundscape Player -->
+    <section class="m3-card p-6 bg-white space-y-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="p-2 rounded-2xl bg-purple-100 text-purple-800 border border-purple-200 shadow-xs">
+            <i data-lucide="sparkles" class="w-5 h-5 text-purple-700"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>Google Lyria 2 Neural Soundscape</span>
+              <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-900 border border-purple-300">
+                AI Generative (No Lyrics)
+              </span>
+            </h3>
+            <p class="text-xs text-slate-500 font-medium -mt-0.5">Direct text-to-soundscape synthesis conditioned on telemetry & bioacoustic physics</p>
+          </div>
+        </div>
+        <span id="lyria-audio-status-tag" class="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+          Ready
+        </span>
+      </div>
+
+      <!-- Lyria Canvas Audio Waveform Visualizer -->
+      <div class="waveform-container h-36 w-full flex items-center justify-center">
+        <canvas id="lyria-waveform-canvas" class="w-full h-full block"></canvas>
+        <div id="lyria-waveform-placeholder" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-slate-400">
+          <i data-lucide="music" class="w-8 h-8 mb-1 text-purple-300"></i>
+          <span class="text-xs font-medium">Click Play to Activate Lyria 2 Waveform Visualizer</span>
+        </div>
+      </div>
+
+      <!-- Lyria Playback Controls -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+        <div class="flex items-center gap-4">
+          <!-- Play / Pause Button -->
+          <button id="lyria-play-btn" class="w-14 h-14 rounded-2xl bg-purple-700 hover:bg-purple-800 text-white flex items-center justify-center shadow-lg shadow-purple-900/20 transition transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-purple-200">
+            <i id="lyria-play-icon" data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+          </button>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="lyria-current-time" class="text-sm font-mono font-semibold text-slate-900">0:00</span>
+              <span class="text-slate-300 font-mono">/</span>
+              <span id="lyria-total-duration" class="text-sm font-mono text-slate-500">1:00</span>
+            </div>
+            <p id="lyria-audio-mode-label" class="text-xs text-purple-700 font-medium mt-0.5">Lyria 2 Neural Bioacoustic Master</p>
+          </div>
+        </div>
+
+        <!-- Scrubber Progress Bar -->
+        <div class="flex-1 max-w-md mx-2">
+          <input type="range" id="lyria-seek-bar" min="0" max="100" value="0" step="0.1" class="m3-slider cursor-pointer">
+        </div>
+
+        <!-- Volume & Loop Controls -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <button id="lyria-mute-btn" class="p-2 text-slate-500 hover:text-slate-800 transition">
+              <i id="lyria-volume-icon" data-lucide="volume-2" class="w-5 h-5"></i>
+            </button>
+            <input type="range" id="lyria-volume-bar" min="0" max="1" step="0.05" value="0.85" class="w-20 h-1.5 bg-slate-200 rounded-lg cursor-pointer">
+          </div>
+
+          <button id="lyria-loop-btn" title="Toggle Loop" class="p-2.5 rounded-xl border border-slate-200 text-slate-500 hover:text-purple-700 hover:bg-purple-50 transition">
+            <i data-lucide="repeat" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- How This Lyria Audio Was Generated (Audio Provenance & Processing) -->
+      <div class="pt-5 border-t border-slate-100 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="p-1.5 rounded-xl bg-purple-100 text-purple-800 border border-purple-200">
+              <i data-lucide="brain-circuit" class="w-4 h-4 text-purple-700"></i>
+            </span>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-800">
+              How This Lyria Audio Was Generated
+            </h4>
+          </div>
+          <span class="text-[11px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-800 border border-purple-200">
+            Vertex AI Lyria 2 API
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-3.5 rounded-2xl bg-purple-50/50 border border-purple-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-purple-900 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="cpu" class="w-3 h-3 text-purple-700"></i>
+              Generative Model Architecture
+            </span>
+            <p id="lyria-model-name" class="text-xs font-semibold text-purple-950 leading-relaxed">
+              Google DeepMind Lyria 2 (lyria-002)
+            </p>
+            <span class="text-[10px] text-purple-700 font-mono block">Vertex AI Publisher Model Garden</span>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="terminal" class="w-3 h-3 text-blue-600"></i>
+              Bioacoustic Conditioning Prompt
+            </span>
+            <p id="lyria-prompt-used" class="text-xs font-medium text-slate-900 leading-relaxed font-mono line-clamp-3"></p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <i data-lucide="check-circle" class="w-3 h-3 text-emerald-600"></i>
+              Constraints & Mastering
+            </span>
+            <p id="lyria-processing-details" class="text-xs font-medium text-slate-900 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scientific Sound Derivation & Earth Data to Soundscape Pipeline -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-200">
+        <div class="flex items-center gap-2">
+          <i data-lucide="microscope" class="w-5 h-5 text-emerald-700"></i>
+          <h3 class="text-lg font-bold text-slate-900">Scientific Sound Derivation & Earth Data Attribution</h3>
+        </div>
+        <span class="text-xs font-mono font-medium px-3 py-1 rounded-full bg-emerald-100/80 text-emerald-950 border border-emerald-300">
+          Data-Driven Acoustics
+        </span>
+      </div>
+
+      <!-- Tier 1: Raw Earth Observation Telemetry Grid -->
+      <div class="m3-card p-6 bg-white space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center justify-center">1</span>
+            <h4 class="text-sm font-bold text-slate-900">Extracted Earth Observation Telemetry (Earth Engine & Maps)</h4>
+          </div>
+          <span class="text-[11px] text-slate-400 font-mono">Live Ingested Planetary Datasets</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Elevation</span>
+            <p id="tele-elev" class="text-xl font-extrabold text-slate-900">0 m</p>
+            <span class="text-[9px] text-slate-400 block">Copernicus GLO-30</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">Tree Canopy</span>
+            <p id="tele-canopy" class="text-xl font-extrabold text-emerald-800">0%</p>
+            <span class="text-[9px] text-emerald-600 block">Hansen Forest Cover</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-blue-800 uppercase tracking-wider">Surface Water</span>
+            <p id="tele-water" class="text-xl font-extrabold text-blue-800">0%</p>
+            <span class="text-[9px] text-blue-600 block">JRC Water Occurrence</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-amber-800 uppercase tracking-wider">Ambient Temp</span>
+            <p id="tele-temp" class="text-xl font-extrabold text-amber-800">0°C</p>
+            <span class="text-[9px] text-amber-600 block">Maps Weather API</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-cyan-50/60 border border-cyan-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-cyan-800 uppercase tracking-wider">Precipitation</span>
+            <p id="tele-precip" class="text-xl font-extrabold text-cyan-900">0 mm/h</p>
+            <span class="text-[9px] text-cyan-700 block">ERA5-Land Hourly</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Wind Speed</span>
+            <p id="tele-wind" class="text-xl font-extrabold text-slate-900">0 m/s</p>
+            <span class="text-[9px] text-slate-400 block">ERA5 10m Velocity</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2: Biophysical & Acoustic Transformation Logic -->
+      <div class="m3-card p-6 bg-white space-y-4">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-bold flex items-center justify-center">2</span>
+          <h4 class="text-sm font-bold text-slate-900">Acoustic Physics & Bioacoustic Derivation</h4>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-200/80 space-y-1.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-950">Estimated Reverb Decay ($T_{60}$)</span>
+            <p id="acoustics-t60" class="text-2xl font-extrabold text-blue-950 font-mono">1.20s</p>
+            <p class="text-[11px] text-blue-800 leading-relaxed">Computed from terrain relief slope, rock surface reflectivity vs. vegetative foliage absorption coefficient.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-1.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-950">Biophonic Density Score</span>
+            <p id="acoustics-biophony" class="text-2xl font-extrabold text-emerald-950 font-mono">85.0 / 100</p>
+            <p class="text-[11px] text-emerald-800 leading-relaxed">Derived from Hansen tree canopy density and thermal biodiversity windows.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 space-y-1.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-950">Geophonic Intensity Score</span>
+            <p id="acoustics-geophony" class="text-2xl font-extrabold text-amber-950 font-mono">72.0 / 100</p>
+            <p class="text-[11px] text-amber-800 leading-relaxed">Synthesized from precipitation impact kinetic energy, wind velocity shear, and surface water dynamics.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+          <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Spatial Acoustic Physics Profile</span>
+          <p id="acoustics-profile-desc" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- Tier 3: Earth Data -> Soundscape Translation Pipeline Matrix -->
+      <div class="m3-card p-6 bg-white space-y-5">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 text-xs font-bold flex items-center justify-center">3</span>
+            <h4 class="text-sm font-bold text-slate-900">How Extracted Earth Data Informed the Soundscape</h4>
+          </div>
+          <span class="text-[11px] text-purple-800 font-mono font-medium px-2.5 py-0.5 rounded-full bg-purple-50 border border-purple-200">
+            Translational Logic Matrix
+          </span>
+        </div>
+
+        <!-- Dynamic Data Mapping Breakdown Table -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-100/90 text-slate-700 font-bold border-b border-slate-200">
+                <th class="py-3.5 px-4 w-1/4">Extracted Earth Observation Metric</th>
+                <th class="py-3.5 px-4 w-1/3">Physical & Acoustic Translation</th>
+                <th class="py-3.5 px-4">Derived Soundscape Acoustic Element</th>
+              </tr>
+            </thead>
+            <tbody id="data-translation-table" class="divide-y divide-slate-200 bg-white">
+              <!-- Dynamically populated per location in app.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Full Master Bioacoustic Prompt & Parameters -->
+        <div class="space-y-4 pt-2">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+                Full Bioacoustic Master Soundscape Prompt
+              </span>
+              <span class="text-[11px] font-mono text-slate-400">Synthesized from Telemetry & Bioacoustics</span>
+            </div>
+            <div id="master-prompt-display" class="p-4 rounded-2xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed border border-slate-800 shadow-inner">
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-700">Acoustic Noise & Artifact Exclusion</span>
+            <div id="negative-prompt-display" class="p-3.5 rounded-xl bg-slate-100 font-mono text-xs text-slate-600 leading-relaxed border border-slate-200">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+              <span class="text-slate-500 font-mono block text-[10px] uppercase">Acoustic Engine:</span>
+              <p class="font-bold text-slate-900 mt-0.5">EarthAI-Bioacoustics</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+              <span class="text-slate-500 font-mono block text-[10px] uppercase">Duration:</span>
+              <p class="font-bold text-slate-900 mt-0.5">60 Seconds Seamless</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+              <span class="text-slate-500 font-mono block text-[10px] uppercase">Audio Spec:</span>
+              <p class="font-bold text-slate-900 mt-0.5">48 kHz Stereo 16-bit PCM</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs">
+              <span class="text-slate-500 font-mono block text-[10px] uppercase">Mastering:</span>
+              <p class="font-bold text-slate-900 mt-0.5">EBU R128 (-16 LUFS)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 4: Indigenous Soundscape Elements (Fauna & Geophony Tags) -->
+      <div class="m3-card p-6 bg-white space-y-4">
+        <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="feather" class="w-4 h-4 text-emerald-600"></i>
+          Indigenous Biophonic & Geophonic Soundscape Elements
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-2">
+            <span class="text-xs font-bold text-emerald-950 uppercase tracking-wider">Representative Wildlife Biophony</span>
+            <div id="species-tags" class="flex flex-wrap gap-1.5">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+          <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-200/80 space-y-2">
+            <span class="text-xs font-bold text-blue-950 uppercase tracking-wider">Geological & Atmospheric Geophony</span>
+            <div id="geophony-tags" class="flex flex-wrap gap-1.5">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 space-y-1">
+    <p>Google EarthAI Planetary Soundscapes • Material Design 3 Light Edition</p>
+    <p class="font-mono text-[11px] text-slate-400">Data Sources: Google Earth Engine, Google Maps Platform, ECMWF ERA5, UMD Hansen, EC JRC, Data Commons</p>
+  </footer>
+
+  <!-- Application Controller Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
