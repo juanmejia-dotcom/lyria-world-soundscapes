@@ -111,9 +111,26 @@ const el = {
 // Initialize Application
 async function init() {
   try {
-    const res = await fetch('/api/locations');
-    if (!res.ok) throw new Error(`HTTP ${res.status} fetching locations`);
-    state.locations = await res.json();
+    let locationsData = null;
+    try {
+      const res = await fetch('/api/locations');
+      if (res.ok) {
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          locationsData = await res.json();
+        }
+      }
+    } catch (e) {
+      console.log('API fetch skipped or failed, trying static configs:', e);
+    }
+
+    if (!locationsData || !Array.isArray(locationsData)) {
+      const resStatic = await fetch('data/soundscape_configs.json');
+      if (!resStatic.ok) throw new Error(`HTTP ${resStatic.status} fetching static soundscape configs`);
+      locationsData = await resStatic.json();
+    }
+
+    state.locations = locationsData;
 
     if (state.locations.length > 0) {
       populateLocationDropdown();
@@ -208,7 +225,8 @@ function selectLocation(locId) {
   }
 
   // Load Player 1: Authentic Field Recording Soundscape
-  loadFieldAudioTrack(loc.audio_asset_url || `/api/audio/${loc.id}_master.wav`, 'Authentic Field Recording Soundscape');
+  const fieldUrl = `static/audio/${loc.id}_master.wav`;
+  loadFieldAudioTrack(fieldUrl, 'Authentic Field Recording Soundscape');
 
   // Populate Player 1 Provenance Note
   const prov = loc.soundscape_generation_provenance || {};
@@ -217,7 +235,7 @@ function selectLocation(locId) {
   if (el.audioDspProcessing) el.audioDspProcessing.textContent = prov.processing || 'Multi-track spatial audio mix, bandpass filtering, EBU R128 loudness normalization.';
 
   // Load Player 2: Lyria 2 Neural Bioacoustic Soundscape
-  const lyriaUrl = `/api/audio/${loc.id}_lyria.wav`;
+  const lyriaUrl = `static/audio/${loc.id}_lyria.wav`;
   loadLyriaAudioTrack(lyriaUrl, 'Google Lyria 2 Neural Soundscape');
 
   // Populate Player 2 Provenance Note
